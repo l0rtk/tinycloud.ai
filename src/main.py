@@ -10,26 +10,9 @@ def main():
     api_key = os.getenv("OPENAI_API_KEY")
     assistant_manager = OpenAIAssistant(api_key)
     
-    # Create an assistant
-    assistant = assistant_manager.create_assistant(
-        name="Georgian Word Form Generator",
-        instructions="""You are an expert in Georgian language.
-        When given a Georgian word, generate all its grammatical forms.
-        For example, if the word is "სახლი" (house), return:
-            სახლი
-            სახლმა
-            სახლს
-            სახლის
-            სახლით
-            სახლად
-
-        Give me in JSON format.
-        """,
-
-
-
-        model="gpt-4-turbo-preview"
-    )
+    # Connect to your existing assistant
+    assistant_id = os.getenv("ASSISTANT_ID")
+    assistant = assistant_manager.connect_to_assistant(assistant_id)
     
     # Create a thread
     thread = assistant_manager.create_thread()

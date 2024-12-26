@@ -184,3 +184,16 @@ class OpenAIAssistant:
                 purpose="assistants"
             )
         return response.id
+
+    def connect_to_assistant(self, assistant_id: str) -> Dict:
+        """
+        Connect to an existing assistant using its ID.
+        
+        Args:
+            assistant_id (str): The ID of the existing assistant
+            
+        Returns:
+            Dict: Retrieved assistant object
+        """
+        self.assistant = self.client.beta.assistants.retrieve(assistant_id)
+        return self.assistant
